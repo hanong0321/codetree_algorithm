@@ -24,7 +24,7 @@ public class Main {
             return 3;
     }
     public static boolean inRange(int x, int y) {
-        return (0 <= x && x < n && 0 <= y && y < n);
+        return (0 < x && x <= n && 0 < y && y <= n);
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -35,21 +35,26 @@ public class Main {
         char cDir;
         r = sc.nextInt();
         c = sc.nextInt();
-        x = r - 1; y = c - 1;
+        x = r; y = c;
         cDir = sc.next().charAt(0);
 
         int moveDir = getDir(cDir);
 
         for(int i = 1; i <= t; i++) {
             int nx = x + dx[moveDir], ny = y + dy[moveDir];
-            if(!inRange(nx, ny)) {
-                moveDir = 3 - moveDir; // 방향 변환
-                i++; //시간 증가
+            if(inRange(nx, ny)) {
+                x = nx;
+                y = ny; // 이동
+
             }
-            x = x + dx[moveDir];
-            y = y + dy[moveDir];
+            else {
+                nx = x;
+                ny = y;
+                moveDir = 3 - moveDir; // 방향 전환
+            }
+
         }
 
-        System.out.println((x+1) + " " + (y+1));
+        System.out.println(x + " " + y);
     }
 }
