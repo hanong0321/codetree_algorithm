@@ -21,17 +21,12 @@ public class Main {
         x = N-1; y = N-1;
         arr[x][y] = N*N;
         for(int i = N*N - 1; i > 0; i--) {
-            while(true) {
-                int nx = x + dx[dirNum], ny = y + dy[dirNum];
-                if (inRange(nx, ny) && arr[nx][ny] == 0) {
-                    x = nx;
-                    y = ny;
-                    arr[x][y] = i;
-                    break;
-                } else {
-                    dirNum = (dirNum + 1) % 4;
-                }
+            int nx = x + dx[dirNum], ny = y + dy[dirNum];
+            if(!inRange(nx,ny) || arr[nx][ny] != 0) {
+                dirNum = (dirNum + 1) % 4;
             }
+            x += dx[dirNum]; y += dy[dirNum];
+            arr[x][y] = i;
         }
         for(int i = 0; i < N; i++) {
             for(int j = 0; j < N; j++) {
