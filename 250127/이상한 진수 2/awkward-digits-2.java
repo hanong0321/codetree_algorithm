@@ -1,34 +1,26 @@
 import java.util.Scanner;
 
-import static java.lang.Math.abs;
-
 public class Main {
-
-    public static int maxSum;
-    public static String a;
-
-    public static String change(int idx, char c) {
-        return a.substring(0, idx) + c + a.substring(idx+1);
-    }
-
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
+        String binaryStr = sc.next();
+        sc.close();
 
-        a = sc.next();
-        if (a.isEmpty() || a.length() > 10) return;
-        maxSum = Integer.parseInt(a, 2);
+        int maxDecimalValue = Integer.MIN_VALUE;
+     
+        for (int i = 0; i < binaryStr.length(); i++) {
+            char[] modifiedBinary = binaryStr.toCharArray();
+       
+            modifiedBinary[i] = (modifiedBinary[i] == '0') ? '1' : '0';
 
-        for(int i = 1; i < a.length(); i++) {
-            String modified;
-            if(a.charAt(i) == '0')
-                modified = change(i, '1');
-            else
-                modified = change(i, '0');
+            int decimalValue = Integer.parseInt(new String(modifiedBinary), 2);
 
-            int sum = Integer.parseInt(modified, 2);
-            maxSum = Math.max(maxSum, sum);
-
+            if (decimalValue > maxDecimalValue) {
+                maxDecimalValue = decimalValue;
+            }
         }
-        System.out.println(maxSum);
+
+        System.out.println(maxDecimalValue);
     }
 }
