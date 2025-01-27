@@ -18,11 +18,15 @@ public class Main {
         maxSum = Integer.parseInt(a, 2);
 
         for(int i = 1; i < a.length(); i++) {
-            if(a.charAt(i) == '0') {
-                String modified = change(i, '1');
-                int sum = Integer.parseInt(modified, 2);
-                maxSum = Math.max(maxSum, sum);
-            }
+            String modified;
+            if(a.charAt(i) == '0')
+                modified = change(i, '1');
+            else
+                modified = change(i, '0');
+
+            int sum = Integer.parseInt(modified, 2);
+            maxSum = Math.max(maxSum, sum);
+
         }
         System.out.println(maxSum);
     }
