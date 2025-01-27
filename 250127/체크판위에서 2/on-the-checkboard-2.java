@@ -7,7 +7,6 @@ public class Main {
 
     public static char[][] arr = new char[MAX_L][MAX_L];
     public static int R, C;
-    public static int x, y = 0;
     public static int cnt = 0;
 
     public static void main(String[] args) {
@@ -20,12 +19,13 @@ public class Main {
                 arr[i][j] = sc.next().charAt(0);
         }
 
-        for (int i = x + 1; i < R - 2; i++) {
-            for (int j = y + 1; j < C - 2; j++) {
-                if ((arr[x][y] != arr[i][j])) {
-                    for (int k = i + 1; k < R - 1; k++) {
-                        for (int l = j + 1; l < C - 1; l++) {
-                            if (arr[i][j] != arr[k][l] && arr[R - 1][C - 1] != arr[k][j]) cnt++;
+        for (int x1 = 1; x1 < R; x1++) {
+            for (int y1 = 1; y1 < C; y1++) {
+                if ((arr[0][0] != arr[x1][y1])) { // 첫번째 점프 확인
+                    for (int x2 = x1 + 1; x2 < R - 1; x2++) {
+                        for (int y2 = y1 + 1; y2 < C - 1; y2++) { 
+                            // 두번째 점프 확인
+                            if (arr[x1][y1] != arr[x2][y2] && arr[x2][y2] != arr[R - 1][C - 1]) cnt++;
                         }
                     }
                 }
