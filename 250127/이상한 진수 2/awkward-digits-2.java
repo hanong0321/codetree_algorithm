@@ -15,6 +15,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         a = sc.next();
+        if (a.isEmpty() || a.length() > 10) return;
         maxSum = Integer.parseInt(a, 2);
 
         for(int i = 1; i < a.length(); i++) {
